@@ -13,6 +13,8 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/newsDb
+  codec:
+    max-in-memory-size: 2000KB
   config:
     import: optional:configserver:http://localhost:8888
     
