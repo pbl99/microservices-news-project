@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>News Web</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+	<!-- Header -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<a class="navbar-brand" href="#">NewsPortal</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Noticias</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Categorias
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="#">Actualidad</a></li>
+							<li><a class="dropdown-item" href="#">Deportes</a></li>
+							<li><a class="dropdown-item" href="#">Sucesos</a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li><a class="dropdown-item" href="#">Comedia</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Registro</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Login</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="content container mt-4">
+	</div>
+
+	<!-- Footer -->
+	<footer class="footer bg-dark text-white mt-auto py-3">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-md-4">
+					<h5>About Us</h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				</div>
+				<div class="col-md-4">
+					<h5>Contact</h5>
+					<ul class="list-unstyled">
+						<li><a href="#" class="text-white">Email Us</a></li>
+						<li><a href="#" class="text-white">Visit Our Office</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<h5>Follow Us</h5>
+					<a href="#" class="text-white me-2"><i class="bi bi-facebook"></i></a>
+					<a href="#" class="text-white me-2"><i class="bi bi-twitter"></i></a>
+					<a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

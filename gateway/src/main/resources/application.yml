@@ -1,9 +1,7 @@
 server:
   port: 8080
-  
+
 spring:
-  config:
-    import: optional:configserver:http://localhost:8888
   application:
     name: msvc-gateway
   cloud:
@@ -13,10 +11,10 @@ spring:
           enabled: true
       routes:
         - id: user
-          uri: http://localhost:8090
+          uri: lb://msvc-user
           predicates:
             - Path=/api/user/**
         - id: news
-          uri: http://localhost:9090
+          uri: lb://msvc-news
           predicates:
             - Path=/api/news/**

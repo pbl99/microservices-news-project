@@ -1,9 +1,14 @@
 server:
-  port: 8761
+  port: 8080
 
 spring:
   application:
-    name: msvc-eureka
+    name: msvc-web
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: ADMIN
   config:
     import: optional:configserver:http://localhost:8888
     
@@ -12,4 +17,4 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka

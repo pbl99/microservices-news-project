@@ -16,4 +16,6 @@ public interface INewsService {
 
 	List<Item> getNewsByCategory(String mainCategory);
 
+	NewsResponse findNewsById(Long id);
+
 }
