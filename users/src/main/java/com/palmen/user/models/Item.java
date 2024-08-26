@@ -1,7 +1,6 @@
-package com.palmen.news.models;
+package com.palmen.user.models;
 
 public class Item {
-
 	private String title;
 	private String anteTitle;
 	private String mainCategory;
@@ -56,5 +55,6 @@ public class Item {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	
+	
 }
