@@ -7,7 +7,6 @@ public class Item {
 	private String mainCategory;
 	private String image;
 	private String publicationDate;
-	private String id;
 
 	public String getTitle() {
 		return title;
@@ -47,14 +46,6 @@ public class Item {
 
 	public void setPublicationDate(String publicationDate) {
 		this.publicationDate = publicationDate;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 }

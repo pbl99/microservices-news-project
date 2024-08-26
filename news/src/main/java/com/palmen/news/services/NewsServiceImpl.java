@@ -45,7 +45,7 @@ public class NewsServiceImpl implements INewsService {
 		// Filtrar los elementos de la segunda página que comienzan con el prefijo dado
 		List<Item> itemsResponsePage2 = response2.getPage().getItems().stream()
 				.filter(item -> item.getMainCategory().startsWith(mainCategory)).collect(Collectors.toList());
-
+		
 		List<Item> itemsJuntos = new ArrayList<>();
 		itemsJuntos.addAll(itemsResponsePage1);
 		itemsJuntos.addAll(itemsResponsePage2);
@@ -56,14 +56,6 @@ public class NewsServiceImpl implements INewsService {
 	@Override
 	public void save(News news) {
 		newsRepository.save(news);
-	}
-
-	@Override
-	public NewsResponse findNewsById(Long id) {
-		NewsResponse itemEncontrado = webClient.get().uri("/api/noticias/" + id + ".json").retrieve()
-				.bodyToMono(NewsResponse.class).block();
-		
-		return itemEncontrado;
 	}
 
 	@Override

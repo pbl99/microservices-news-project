@@ -23,7 +23,6 @@
 		<module>gateway</module>
 		<module>news</module>
 		<module>user</module>
-		<module>web</module>
 	</modules>
 
 	<url />

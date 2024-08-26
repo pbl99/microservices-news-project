@@ -14,7 +14,7 @@ public class SecurityConfig {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(authorizeRequests -> authorizeRequests
-				.requestMatchers("/api/user/**", "/api/usernews/**").hasRole("ADMIN").anyRequest().authenticated())
+				.requestMatchers("/api/user/**").hasRole("ADMIN").anyRequest().authenticated())
 				.httpBasic(Customizer.withDefaults());
 		return http.build();
 	}

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,12 +34,6 @@ public class NewsController {
 	@GetMapping("/search/all")
 	public ResponseEntity<?> findAll() {
 		return ResponseEntity.ok(newsService.findAll());
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<NewsResponse> getNewsById(@PathVariable("id") Long id){
-		NewsResponse newsFind = newsService.findNewsById(id);
-		return ResponseEntity.ok(newsFind);
 	}
 
 	@GetMapping("/latest")

@@ -17,7 +17,7 @@ public class User {
 
 	private String password;
 
-	private List<Long> favoriteNewsIds;
+	private List<String> favoriteNewsIds;
 
 	public Long getId() {
 		return id;
@@ -51,11 +51,11 @@ public class User {
 		this.password = password;
 	}
 
-	public List<Long> getFavoriteNewsIds() {
+	public List<String> getFavoriteNewsIds() {
 		return favoriteNewsIds;
 	}
 
-	public void setFavoriteNewsIds(List<Long> favoriteNewsIds) {
+	public void setFavoriteNewsIds(List<String> favoriteNewsIds) {
 		this.favoriteNewsIds = favoriteNewsIds;
 	}
 
