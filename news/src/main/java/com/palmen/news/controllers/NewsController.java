@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,12 +47,19 @@ public class NewsController {
 	@GetMapping("/latest")
 	public ResponseEntity<NewsResponse> getLatestNews() {
 		NewsResponse latestNews = newsService.getLatestNews();
+		
+		/* Estas eliminaciones se crean debido a que la API proporciona 3 noticias fijadas automáticamente las tres primeras 
+		y no interesan en el propósito de la aplicación */
+		latestNews.getPage().getItems().remove(2);
+		latestNews.getPage().getItems().remove(1);
+		latestNews.getPage().getItems().remove(0);
+
 		return ResponseEntity.ok(latestNews);
 	}
 	
 	@GetMapping("/categories")
-	public ResponseEntity<List<Item>> getNewsByCategory(){
-		List<Item> categoryNews = newsService.getNewsByCategory("Noticias/Economía");
+	public ResponseEntity<List<Item>> getNewsByCategory(@RequestParam String categoria){
+		List<Item> categoryNews = newsService.getNewsByCategory(categoria);
 		return ResponseEntity.ok(categoryNews);
 	}
 

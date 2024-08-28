@@ -1,4 +1,4 @@
-package com.palmen.user.models;
+package com.palmen.web.models;
 
 public class Item {
 	private String title;
@@ -55,4 +55,5 @@ public class Item {
 	public void setId(String id) {
 		this.id = id;
 	}
+
 }

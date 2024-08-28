@@ -14,6 +14,6 @@ public interface NewsClient {
 	@GetMapping("/{id}")
     ResponseEntity<NewsResponse> getNewsById(@PathVariable("id") Long id);
 	
-	@GetMapping("/search/all")
+	@GetMapping("/latest")
 	ResponseEntity<NewsResponse> findAll();
 }
