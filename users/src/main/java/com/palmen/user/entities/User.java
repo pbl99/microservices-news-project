@@ -1,5 +1,6 @@
 package com.palmen.user.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -9,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 
 	@Id
-	private Long id;
+	private String id;
 
 	private String username;
 
@@ -17,13 +18,13 @@ public class User {
 
 	private String password;
 
-	private List<Long> favoriteNewsIds;
+	private List<Long> favoriteNewsIds = new ArrayList<>();
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

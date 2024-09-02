@@ -18,9 +18,12 @@ import com.palmen.news.entities.News;
 import com.palmen.news.models.Item;
 import com.palmen.news.models.NewsResponse;
 import com.palmen.news.services.INewsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RequestMapping("/api/news")
 @RestController
+@Tag(name = "Api noticias" , description = "Controlador para las noticias")
 public class NewsController {
 
 	@Autowired
@@ -37,28 +40,35 @@ public class NewsController {
 	public ResponseEntity<?> findAll() {
 		return ResponseEntity.ok(newsService.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<NewsResponse> getNewsById(@PathVariable("id") Long id){
+	public ResponseEntity<NewsResponse> getNewsById(@PathVariable("id") Long id) {
 		NewsResponse newsFind = newsService.findNewsById(id);
 		return ResponseEntity.ok(newsFind);
 	}
 
 	@GetMapping("/latest")
+	@Operation(
+			summary = "Busca las últimas noticias",
+			description = "Busca todas las últimas noticias por orden de fecha y hora lo máximo que parece dejar la api de rtve es traer 120 noticias."
+		)
 	public ResponseEntity<NewsResponse> getLatestNews() {
 		NewsResponse latestNews = newsService.getLatestNews();
-		
-		/* Estas eliminaciones se crean debido a que la API proporciona 3 noticias fijadas automáticamente las tres primeras 
-		y no interesan en el propósito de la aplicación */
+
+		/*
+		 * Estas eliminaciones se crean debido a que la API proporciona 3 noticias
+		 * fijadas automáticamente las tres primeras y no interesan en el propósito de
+		 * la aplicación
+		 */
 		latestNews.getPage().getItems().remove(2);
 		latestNews.getPage().getItems().remove(1);
 		latestNews.getPage().getItems().remove(0);
 
 		return ResponseEntity.ok(latestNews);
 	}
-	
+
 	@GetMapping("/categories")
-	public ResponseEntity<List<Item>> getNewsByCategory(@RequestParam String categoria){
+	public ResponseEntity<List<Item>> getNewsByCategory(@RequestParam String categoria) {
 		List<Item> categoryNews = newsService.getNewsByCategory(categoria);
 		return ResponseEntity.ok(categoryNews);
 	}

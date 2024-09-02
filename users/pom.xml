@@ -70,6 +70,11 @@
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+		<dependency>
 			<groupId>com.palmen</groupId>
 			<artifactId>news</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

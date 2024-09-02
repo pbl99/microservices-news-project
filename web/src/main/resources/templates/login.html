@@ -17,21 +17,21 @@
 		<div class="card bg-dark text-white p-4" style="width: 400px;">
 			<div class="card-body">
 				<h2 class="card-title text-center mb-4">Iniciar Sesión</h2>
-				<form action="/login" method="post">
+				<form th:action="@{/authenticate}" th:object="${loginRequestDTO}" method="post">
 					<div class="mb-3">
 						<label for="username" class="form-label">Usuario</label>
 						<input type="text" class="form-control bg-secondary text-white border-0" id="username"
-							name="username" required>
+							name="username" th:field="*{username}" required>
 					</div>
 					<div class="mb-3">
 						<label for="password" class="form-label">Contraseña</label>
 						<input type="password" class="form-control bg-secondary text-white border-0" id="password"
-							name="password" required>
+							name="password" th:field="*{password}" required>
 					</div>
 					<button type="submit" class="btn btn-warning w-100">Entrar</button>
 				</form>
 				<p class="text-center mt-3">
-					<a href="/register" class="text-warning">¿No tienes cuenta? Regístrate</a>
+					<a th:href="@{/api/web/register}" class="text-warning">¿No tienes cuenta? Regístrate</a>
 				</p>
 			</div>
 		</div>

@@ -12,9 +12,15 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(authorizeRequests -> authorizeRequests
-				.requestMatchers("/css/**", "/news/**", "/register").permitAll().anyRequest().authenticated())
-				.formLogin(form -> form.loginPage("/login").permitAll());
+		http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(authorizeRequests -> authorizeRequests
+						.requestMatchers("/css/**", "/api/web/**", "/register", "/registrar", "/authenticate")
+						.permitAll().anyRequest().authenticated())
+				.formLogin(form -> form.loginPage("/api/web/login").permitAll().defaultSuccessUrl("/api/web/latestNews", true)
+						.failureUrl("/login?error=true"))
+				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout=true")
+
+				);
 		return http.build();
 	}
 }

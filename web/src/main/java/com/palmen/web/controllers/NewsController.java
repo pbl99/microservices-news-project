@@ -13,23 +13,38 @@ import com.palmen.web.models.Item;
 import com.palmen.web.services.INewsService;
 
 @Controller
-@RequestMapping("/news")
+@RequestMapping("/api/web")
 public class NewsController {
 
 	@Autowired
 	private INewsService newsService;
 
 	@GetMapping("/latestNews")
-	public String news(@RequestParam(value = "categoria", required = false) String categoria, Model model) {
+	public String news(@RequestParam(value = "categoria", required = false) String categoria,
+			@RequestParam(defaultValue = "1") int page, Model model) {
+		int pageSize = 28; // Número de elementos por página
 		List<Item> news;
 
+		// Obtener noticias según la categoría, si se especifica
 		if (categoria != null && !categoria.isEmpty()) {
 			news = newsService.getNewsByCategory(categoria);
 		} else {
 			news = newsService.getAllNews();
 		}
 
-		model.addAttribute("news", news);
+		// Calcular la sublista para la página actual
+		int startItem = (page - 1) * pageSize;
+		int endItem = Math.min(startItem + pageSize, news.size());
+
+		List<Item> paginatedNews = news.subList(startItem, endItem);
+
+		// Añadir la sublista y la información de paginación al modelo
+		model.addAttribute("news", paginatedNews);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", (int) Math.ceil((double) news.size() / pageSize));
+		model.addAttribute("categoria", categoria); // Pasar la categoría actual para la navegación
+
 		return "news";
+
 	}
 }

@@ -10,7 +10,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="/news/latestNews">Noticias</a>
+						<a class="nav-link" href="/api/web/latestNews">Noticias</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -18,23 +18,40 @@
 							Categorias
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" th:href="@{/news/latestNews(categoria='actualidad')}">Actualidad</a>
+							<li><a class="dropdown-item"
+									th:href="@{/api/web/latestNews(categoria='Noticias/Cultura')}">Cultura</a>
 							</li>
-							<li><a class="dropdown-item" th:href="@{/news/latestNews(categoria='Deportes')}">Deportes</a>
+							<li><a class="dropdown-item"
+									th:href="@{/api/web/latestNews(categoria='Deportes')}">Deportes</a>
 							</li>
-							<li><a class="dropdown-item" th:href="@{/news/latestNews(categoria='actualidad')}">Sucesos</a>
+							<li><a class="dropdown-item"
+									th:href="@{/api/web/latestNews(categoria='Noticias/Ciencia')}">Ciencia y tecnología</a>
+							</li>
+							<li><a class="dropdown-item"
+									th:href="@{/api/web/latestNews(categoria='Noticias/Economía')}">Economía</a>
+							</li>
+							<li><a class="dropdown-item"
+									th:href="@{/api/web/latestNews(categoria='Noticias/Especiales')}">Especiales</a>
 							</li>
 							<li>
 								<hr class="dropdown-divider">
 							</li>
-							<li><a class="dropdown-item" href="#">Comedia</a></li>
+							<li><a class="dropdown-item"
+									th:href="@{/api/web/latestNews(categoria='Noticias/España')}">España</a>
+							</li>
+							<li><a class="dropdown-item"
+									th:href="@{/api/web/latestNews(categoria='Noticias/Mundo/Latinoamérica')}">Latinoamérica</a>
+							</li>
+							<li><a class="dropdown-item"
+									th:href="@{/api/web/latestNews(categoria='Noticias/Mundo/Asia')}">Asia</a>
+							</li>
 						</ul>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/register">Registro</a>
+						<a class="nav-link" href="/api/web/register">Registro</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/login">Login</a>
+						<a class="nav-link" href="/api/web/login">Login</a>
 					</li>
 				</ul>
 			</div>

@@ -4,17 +4,47 @@ server:
 spring:
   application:
     name: msvc-gateway
+  config:
+    import: optional:configserver:http://localhost:8888
+
   cloud:
     gateway:
       discovery:
         locator:
-          enabled: true
+          enabled: true  # Habilita el descubrimiento automático de servicios
       routes:
-        - id: user
-          uri: lb://msvc-user
+        - id: msvc-user-route
+          uri: lb://MSVC-USER  # Usando el nombre del servicio registrado en Eureka
           predicates:
             - Path=/api/user/**
-        - id: news
-          uri: lb://msvc-news
+        - id: msvc-news-rout
+          uri: lb://MSVC-NEWS  # Usando el nombre del servicio registrado en Eureka
           predicates:
             - Path=/api/news/**
+        - id: msvc-web-route
+          uri: lb://MSVC-WEB  # Usando el nombre del servicio registrado en Eureka
+          predicates:
+            - Path=/api/web/**, /css/**, /images/**  # Cambia el path según lo que necesites
+          
+          # Rutas para Swagger en cada microservicio
+        - id: swagger-user-route
+          uri: lb://MSVC-USER
+          predicates:
+            - Path=/swagger/user/**
+
+        - id: swagger-news-route
+          uri: lb://MSVC-NEWS
+          predicates:
+            - Path=/swagger/news/**
+          filters:
+            - RewritePath=/swagger/news/(?<path>.*), /swagger-ui/index.html
+
+        - id: swagger-web-route
+          uri: lb://MSVC-WEB
+          predicates:
+            - Path=/swagger/web/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/  # Dirección de tu servidor Eureka

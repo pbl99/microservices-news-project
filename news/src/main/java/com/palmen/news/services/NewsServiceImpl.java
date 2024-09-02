@@ -11,6 +11,9 @@ import com.palmen.news.entities.News;
 import com.palmen.news.entities.persistence.INewsRepository;
 import com.palmen.news.models.Item;
 import com.palmen.news.models.NewsResponse;
+import com.palmen.news.models.Page;
+
+import reactor.core.publisher.Flux;
 
 @Service
 public class NewsServiceImpl implements INewsService {
@@ -26,8 +29,24 @@ public class NewsServiceImpl implements INewsService {
 
 	@Override
 	public NewsResponse getLatestNews() {
-		return webClient.get().uri("/api/noticias.json?size=60&page=1").retrieve().bodyToMono(NewsResponse.class)
-				.block();
+		List<String> uris = List.of("/api/noticias.json?size=60&page=1", "/api/noticias.json?size=60&page=2");
+
+		Flux<NewsResponse> responses = Flux.fromIterable(uris)
+				.flatMap(uri -> webClient.get().uri(uri).retrieve().bodyToMono(NewsResponse.class));
+
+		return responses.collectList().map(newsResponses -> {
+			NewsResponse combined = new NewsResponse();
+			Page combinedPage = new Page();
+
+			for (NewsResponse response : newsResponses) {
+				if (response != null && response.getPage() != null) {
+					combinedPage.getItems().addAll(response.getPage().getItems());
+				}
+			}
+
+			combined.setPage(combinedPage);
+			return combined;
+		}).block();
 	}
 
 	@Override
@@ -62,7 +81,7 @@ public class NewsServiceImpl implements INewsService {
 	public NewsResponse findNewsById(Long id) {
 		NewsResponse itemEncontrado = webClient.get().uri("/api/noticias/" + id + ".json").retrieve()
 				.bodyToMono(NewsResponse.class).block();
-		
+
 		return itemEncontrado;
 	}
 

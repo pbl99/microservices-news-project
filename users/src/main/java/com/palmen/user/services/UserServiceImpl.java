@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.palmen.user.entities.User;
@@ -13,6 +15,7 @@ import com.palmen.user.feign.NewsClient;
 import com.palmen.user.models.Item;
 import com.palmen.user.models.NewsResponse;
 import com.palmen.user.models.UserNewsDTO;
+import com.palmen.user.models.UserRegistrationDTO;
 import com.palmen.user.persistence.IUserRepository;
 
 @Service
@@ -24,13 +27,16 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private NewsClient newsClient;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Override
 	public List<User> findAll() {
 		return userRepository.findAll();
 	}
 
 	@Override
-	public Optional<User> findById(Long id) {
+	public Optional<User> findById(String id) {
 		return userRepository.findById(id);
 	}
 
@@ -69,5 +75,26 @@ public class UserServiceImpl implements IUserService {
 	public UserNewsDTO getUserWithFavoriteNews(Long userId) {
 		// Implementa la lógica para obtener noticias favoritas del usuario
 		return new UserNewsDTO();
+	}
+
+	@Override
+	public void register(UserRegistrationDTO userDto) {
+		User user = new User();
+		user.setUsername(userDto.getUsername());
+		user.setEmail(userDto.getEmail());
+		user.setPassword(passwordEncoder.encode(userDto.getPassword())); // Hashea la contraseña en una implementación
+																			// real
+
+		userRepository.save(user);
+	}
+
+	@Override
+	public Optional<User> findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
+
+	@Override
+	public boolean checkPassword(User user, String rawPassword) {
+		return passwordEncoder.matches(rawPassword, user.getPassword());
 	}
 }

@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @OpenAPIDefinition(
 		info = @Info(
 				title = "API NEWS",
-				description = "Esta app proporciona un sistema gestor de bibliotecas",
+				description = "Esta app proporciona un sistema gestor de noticias",
 				termsOfService = "www.palmenendez.com/terminosyservicios",
 				version = "1.0.0",
 				contact = @Contact(

@@ -3,6 +3,9 @@ package com.palmen.news.entities;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "Entidad para las noticias concretas que se guardarán en la base de datos")
 @Document(collection = "news")
 public class News {
 
