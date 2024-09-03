@@ -17,6 +17,13 @@ spring:
   config:
     import: optional:configserver:http://localhost:8888
     
+    
+springdoc:
+  api-docs:
+    path: /msvc-user/v3/api-docs
+  swagger-ui:
+    path: /msvc-user/swagger-ui.html
+    
 eureka:
   instance:
     hostname: localhost

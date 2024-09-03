@@ -8,6 +8,7 @@ public class Item {
 	private String image;
 	private String publicationDate;
 	private String id;
+	private String text;
 
 	public String getTitle() {
 		return title;
@@ -55,6 +56,14 @@ public class Item {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 }

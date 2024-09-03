@@ -17,32 +17,19 @@ spring:
           uri: lb://MSVC-USER  # Usando el nombre del servicio registrado en Eureka
           predicates:
             - Path=/api/user/**
-        - id: msvc-news-rout
+            - Path=/msvc-user/swagger-ui/**
+          filters:
+            - StripPrefix=1
+        - id: msvc-news-route
           uri: lb://MSVC-NEWS  # Usando el nombre del servicio registrado en Eureka
           predicates:
-            - Path=/api/news/**
+            - Path=/api/news/**, /msvc-news/v3/api-docs/**
         - id: msvc-web-route
           uri: lb://MSVC-WEB  # Usando el nombre del servicio registrado en Eureka
           predicates:
             - Path=/api/web/**, /css/**, /images/**  # Cambia el path según lo que necesites
           
-          # Rutas para Swagger en cada microservicio
-        - id: swagger-user-route
-          uri: lb://MSVC-USER
-          predicates:
-            - Path=/swagger/user/**
 
-        - id: swagger-news-route
-          uri: lb://MSVC-NEWS
-          predicates:
-            - Path=/swagger/news/**
-          filters:
-            - RewritePath=/swagger/news/(?<path>.*), /swagger-ui/index.html
-
-        - id: swagger-web-route
-          uri: lb://MSVC-WEB
-          predicates:
-            - Path=/swagger/web/**
 
 eureka:
   client:

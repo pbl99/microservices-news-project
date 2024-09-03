@@ -115,3 +115,35 @@ body {
 .text-warning:hover {
 	color: #ffd700 !important;
 }
+
+.card.custom-card {
+	transition: border 0.3s ease-in-out;
+	cursor: pointer;
+	border: 2px solid transparent;
+}
+
+.card.custom-card:hover {
+	border: 3px solid #ffbf00 !important;
+}
+
+.card.custom-card {
+	text-decoration: none;
+}
+
+/*Estilos de la paginación */
+
+/* Estilo para la página activa */
+.pagination .page-item.active .page-link {
+	color: #fff;
+	background-color: #ffbf00;
+	border-color: #ffbf00;
+}
+
+.pagination .page-item a.page-link {
+	color: #343a40;
+}
+
+.pagination .page-link:focus {
+	outline: none;
+	box-shadow: none;
+}

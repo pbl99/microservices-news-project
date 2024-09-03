@@ -2,8 +2,10 @@ package com.palmen.web.services;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,16 @@ public class NewsServiceImpl implements INewsService {
 			return response.getBody();
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public NewsResponse getNewsById(Long id) {
+		ResponseEntity<NewsResponse> response = newsClient.getNewsById(id);
+
+		if (response != null && response.getBody() != null) {
+			return response.getBody();
+		} else {
+			throw new NoSuchElementException("News with ID " + id + " not found");
+		}
 	}
 }

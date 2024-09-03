@@ -19,11 +19,16 @@ spring:
     import: optional:configserver:http://localhost:8888
     
     
+openapi:
+  service:
+    title: msvc news doc
+    version: 1.0.0
+    url: http://localhost:8080 #api gateway url
 springdoc:
   api-docs:
-    path: /v3/api-docs
+    path: /mscv-news/v3/api-docs
   swagger-ui:
-    path: /swagger-ui.html
+    path: /msvc-news/swagger-ui.html
     
 eureka:
   instance:
